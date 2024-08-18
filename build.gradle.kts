@@ -1,0 +1,38 @@
+plugins {
+    kotlin("jvm") version "2.0.0"
+    kotlin("plugin.spring") version "1.9.10"
+    kotlin("plugin.jpa") version "1.9.10"
+    id("org.springframework.boot") version "3.1.0"
+    id("io.spring.dependency-management") version "1.1.0"
+}
+
+group = "com.salus"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.kafka:spring-kafka")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("com.google.code.gson:gson")
+    runtimeOnly("org.postgresql:postgresql")
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+    }
+    testImplementation("io.mockk:mockk:1.13.3")
+    testImplementation(kotlin("test"))
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(21)
+}
