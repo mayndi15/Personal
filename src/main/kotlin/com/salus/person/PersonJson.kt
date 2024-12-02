@@ -1,4 +1,4 @@
-package com.salus.person
+package com.salus.com.salus.person
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 

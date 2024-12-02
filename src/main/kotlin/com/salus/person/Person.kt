@@ -1,14 +1,6 @@
-package com.salus.person
+package com.salus.com.salus.person
 
-import jakarta.persistence.Entity
-import jakarta.persistence.Table
-import jakarta.persistence.Id
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Column
-import jakarta.persistence.Enumerated
-import jakarta.persistence.EnumType
-
+import jakarta.persistence.*
 import java.time.LocalDateTime
 
 @Entity

@@ -1,9 +1,9 @@
 package person
 
-import com.salus.person.Gender
-import com.salus.person.Person
-import com.salus.person.PersonRepository
-import com.salus.person.PersonService
+import com.salus.com.salus.person.Gender
+import com.salus.com.salus.person.Person
+import com.salus.com.salus.person.PersonRepository
+import com.salus.com.salus.person.PersonService
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

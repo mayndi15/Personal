@@ -1,6 +1,6 @@
-package com.salus.person
+package com.salus.com.salus.person
 
-import com.salus.utils.DateUtils
+import com.salus.com.salus.utils.DateUtils
 import org.springframework.stereotype.Component
 
 @Component

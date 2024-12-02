@@ -1,4 +1,4 @@
-package com.salus.utils
+package com.salus.com.salus.utils
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

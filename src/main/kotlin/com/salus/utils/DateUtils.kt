@@ -1,4 +1,4 @@
-package com.salus.utils
+package com.salus.com.salus.utils
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

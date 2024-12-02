@@ -1,12 +1,15 @@
-package com.salus.person
+package com.salus.com.salus.person
 
-import org.springframework.kafka.core.KafkaTemplate
+import exceptions.Message
+import exceptions.SalusException
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
+import com.salus.com.salus.kafka.KafkaProducer.publish
 
 @Service
 class PersonService(
-    private val repository: PersonRepository, private val kafkaTemplate: KafkaTemplate<String, Any>,
+    private val repository: PersonRepository,
+    private val converter: PersonConverter
 ) {
 
     fun load(id: Long): Boolean {
@@ -17,7 +20,8 @@ class PersonService(
         setUpTimestamps(person)
 
         val p = repository.save(person)
-        publish(p)
+
+        publish(converter.toJson(p))
         return p
     }
 
@@ -28,12 +32,13 @@ class PersonService(
         setUpTimestamps(persist)
 
         val p = repository.save(persist.copy(id = id))
-        publish(p)
+
+        publish(converter.toJson(p))
         return p
     }
 
     fun details(id: Long): Person {
-        return repository.findById(id).orElse(null)
+        return repository.findById(id).orElseThrow { throw SalusException(Message.ID_NOT_FOUND, "en", id) }
     }
 
     fun list(): List<Person> {
@@ -57,9 +62,5 @@ class PersonService(
             person.createdDate = LocalDateTime.now()
         }
         person.updatedDate = LocalDateTime.now()
-    }
-
-    private fun publish(person: Person) {
-        kafkaTemplate.send("mongodb-topic", person)
     }
 }
